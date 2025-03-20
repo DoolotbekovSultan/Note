@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_gray"
+    tools:context=".ui.fragments.onboard.OnboardFragment">
+
+    <TextView
+        android:id="@+id/skip"
+        android:text="Пропустить"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/potta_one"
+        android:text="Notes"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="13dp"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+    
+    <LinearLayout
+        android:id="@+id/onboardShowers"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
+        <View
+            android:background="@drawable/onboard_shower_circle"
+            android:layout_width="12dp"
+            android:layout_height="11dp"
+            />
+        <View
+            android:background="@drawable/onboard_shower_circle"
+            android:layout_width="12dp"
+            android:layout_height="11dp"
+            android:layout_marginHorizontal="6dp"
+            />
+        <View
+            android:background="@drawable/onboard_shower_circle"
+            android:layout_width="12dp"
+            android:layout_height="11dp"
+            />
+    </LinearLayout>
+    
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startButton"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="12dp"
+        android:backgroundTint="@color/orange"
+        android:text="Начать"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="69dp"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_width="230dp"
+        android:layout_height="58dp"/>
+</LinearLayout>
