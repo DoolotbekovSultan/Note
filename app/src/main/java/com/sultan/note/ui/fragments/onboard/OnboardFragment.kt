@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.sultan.note.R
 import com.sultan.note.databinding.FragmentOnboardBinding
+import com.sultan.note.ui.activity.MainActivity
 import com.sultan.note.ui.adapters.OnboardPageAdapter
 import com.sultan.note.ui.models.OnboardPage
+import com.sultan.note.utils.Preference
 
 class OnboardFragment : Fragment() {
 
@@ -53,15 +56,21 @@ class OnboardFragment : Fragment() {
         )
     )
 
-    private fun setupListeners() {
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+    private fun setupListeners() = with(binding) {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 changeActiveOnboardShower(position)
-                binding.skip.visibility = if (position != 2) View.VISIBLE else View.INVISIBLE
-                binding.startButton.isVisible = position == 2
+                skip.visibility = if (position != 2) View.VISIBLE else View.INVISIBLE
+                startButton.isVisible = position == 2
             }
         })
+        skip.setOnClickListener {
+            toNotesFragment()
+        }
+        startButton.setOnClickListener {
+            toNotesFragment()
+        }
     }
 
     private fun changeActiveOnboardShower(position : Int) {
@@ -74,5 +83,11 @@ class OnboardFragment : Fragment() {
                 onboardShower.setBackgroundResource(R.drawable.onboard_shower_circle)
             }
         }
+    }
+
+    private fun toNotesFragment() {
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.preference.isFirstVisit = false
+        findNavController().navigate(R.id.action_onboardFragment_to_notesFragment)
     }
 }
