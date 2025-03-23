@@ -23,12 +23,12 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/potta_one"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="13dp"
+        app:fontFamily="@font/potta_one"
         android:text="Notes"
         android:textColor="@color/white"
-        android:textSize="25sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="13dp"/>
+        android:textSize="25sp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

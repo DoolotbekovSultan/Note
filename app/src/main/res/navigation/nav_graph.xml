@@ -4,9 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/onboardFragment">
+
     <fragment
         android:id="@+id/onboardFragment"
         android:name="com.sultan.note.ui.fragments.onboard.OnboardFragment"
         android:label="fragment_onboard"
-        tools:layout="@layout/fragment_onboard" />
+        tools:layout="@layout/fragment_onboard" >
+        <action
+            android:id="@+id/action_onboardFragment_to_notesFragment"
+            app:destination="@id/notesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/onboardFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.sultan.note.ui.fragments.notes.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" />
 </navigation>
