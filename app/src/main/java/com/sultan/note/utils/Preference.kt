@@ -3,13 +3,13 @@ package com.sultan.note.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-class Preference{
-    private lateinit var sharedPreferences : SharedPreferences;
+class Preference {
+    private lateinit var sharedPreferences : SharedPreferences
 
     private val IS_FIRST_VISIT = "IS_FIRST_VISIT"
 
     fun unit(context : Context) {
-        sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE)
     }
 
     var isFirstVisit : Boolean

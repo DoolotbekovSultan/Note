@@ -12,7 +12,7 @@ import com.sultan.note.R
 import com.sultan.note.databinding.FragmentOnboardBinding
 import com.sultan.note.ui.activity.MainActivity
 import com.sultan.note.ui.adapters.OnboardPageAdapter
-import com.sultan.note.ui.models.OnboardPage
+import com.sultan.note.models.OnboardPage
 import com.sultan.note.utils.Preference
 
 class OnboardFragment : Fragment() {
@@ -41,18 +41,18 @@ class OnboardFragment : Fragment() {
     private fun generateOnBoardPages() : ArrayList<OnboardPage> = arrayListOf(
         OnboardPage(
             R.raw.convenience_animation,
-            "Удобство",
-            "Создавайте заметки в два клика! Записывайте мысли, идеи и важные задачи мгновенно."
+            getString(R.string.onboard_convenience_title),
+            getString(R.string.onboard_convenience_text)
         ),
         OnboardPage(
             R.raw.organization_animation,
-            "Организация",
-            "Организуйте заметки по папкам и тегам. Легко находите нужную информацию в любое время."
+            getString(R.string.onboard_organization_title),
+            getString(R.string.onboard_organization_text)
         ),
         OnboardPage(
             R.raw.synchronization_animation,
-            "Синхронизация",
-            "Синхронизация на всех устройствах. Доступ к записям в любое время и в любом месте."
+            getString(R.string.onboard_synchronization_title),
+            getString(R.string.onboard_synchronization_text)
         )
     )
 

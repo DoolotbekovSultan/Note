@@ -5,5 +5,11 @@
     <string name="onboard_skip_text">Пропустить</string>
     <string name="onboard_notes_title">Notes</string>
     <string name="onboard_start_text">Начать</string>
+    <string name="onboard_convenience_title">Удобство</string>
+    <string name="onboard_convenience_text">Создавайте заметки в два клика! Записывайте мысли, идеи и важные задачи мгновенно.</string>
+    <string name="onboard_organization_title">Организация</string>
+    <string name="onboard_organization_text">Организуйте заметки по папкам и тегам. Легко находите нужную информацию в любое время.</string>
+    <string name="onboard_synchronization_title">Синхронизация</string>
+    <string name="onboard_synchronization_text">Синхронизация на всех устройствах. Доступ к записям в любое время и в любом месте.</string>
     <string name="content_description">Изображение не загрузилось</string>
 </resources>

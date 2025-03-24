@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sultan.note.databinding.FragmentOnboardPageBinding
-import com.sultan.note.ui.models.OnboardPage
+import com.sultan.note.models.OnboardPage
 
 class OnboardPageFragment : Fragment() {
 
