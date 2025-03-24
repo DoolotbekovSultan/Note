@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Note</string>
+    <string name="notes_all_notes_title">Все заметки</string>
+    <string name="notes_search_notes_hint">Поиск заметок</string>
+    <string name="onboard_skip_text">Пропустить</string>
+    <string name="onboard_notes_title">Notes</string>
+    <string name="onboard_start_text">Начать</string>
+    <string name="content_description">Изображение не загрузилось</string>
 </resources>

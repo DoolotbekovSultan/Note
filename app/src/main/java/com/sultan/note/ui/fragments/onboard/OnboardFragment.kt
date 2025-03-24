@@ -35,7 +35,7 @@ class OnboardFragment : Fragment() {
 
     private fun initialize() {
         val onboardPageAdapter = OnboardPageAdapter(this@OnboardFragment, generateOnBoardPages());
-        binding.viewPager.adapter = onboardPageAdapter
+        binding.onboardViewPager2.adapter = onboardPageAdapter
     }
 
     private fun generateOnBoardPages() : ArrayList<OnboardPage> = arrayListOf(
@@ -57,24 +57,24 @@ class OnboardFragment : Fragment() {
     )
 
     private fun setupListeners() = with(binding) {
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        onboardViewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 changeActiveOnboardShower(position)
-                skip.visibility = if (position != 2) View.VISIBLE else View.INVISIBLE
-                startButton.isVisible = position == 2
+                skipTextView.visibility = if (position != 2) View.VISIBLE else View.INVISIBLE
+                startMaterialButton.isVisible = position == 2
             }
         })
-        skip.setOnClickListener {
+        skipTextView.setOnClickListener {
             toNotesFragment()
         }
-        startButton.setOnClickListener {
+        startMaterialButton.setOnClickListener {
             toNotesFragment()
         }
     }
 
     private fun changeActiveOnboardShower(position : Int) {
-        val onboardShowers = binding.onboardShowers;
+        val onboardShowers = binding.onboardShowersLinearLayout;
         for (i in 0 until onboardShowers.childCount) {
             val onboardShower = onboardShowers.getChildAt(i)
             if (i == position) {
