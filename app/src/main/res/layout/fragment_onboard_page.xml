@@ -8,7 +8,7 @@
     tools:context=".ui.fragments.onboard.OnboardPageFragment">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation"
+        android:id="@+id/animationLottieAnimationView"
         tools:foreground="@color/black"
         android:layout_width="287dp"
         android:layout_height="264dp"
@@ -18,7 +18,7 @@
         />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleTextView"
         tools:text="Title"
         android:textColor="@color/white"
         android:textSize="28sp"
@@ -29,7 +29,7 @@
         />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textTextView"
         tools:text="Создавайте заметки в два клика! Записывайте мысли, идеи и важные задачи мгновенно."
         android:textSize="17sp"
         android:gravity="center"

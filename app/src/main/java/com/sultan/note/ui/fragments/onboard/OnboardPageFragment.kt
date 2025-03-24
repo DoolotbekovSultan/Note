@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sultan.note.databinding.FragmentOnboardPageBinding
-import com.sultan.note.ui.models.OnboardPage
+import com.sultan.note.models.OnboardPage
 
 class OnboardPageFragment : Fragment() {
 
@@ -30,9 +30,9 @@ class OnboardPageFragment : Fragment() {
         val onboardPage = arguments?.getSerializable("ON_BOARD_PAGE") as OnboardPage;
 
         onboardPage.let { board ->
-            animation.setAnimation(board.animation)
-            title.text = board.title
-            text.text = board.text
+            animationLottieAnimationView.setAnimation(board.animation)
+            titleTextView.text = board.title
+            textTextView.text = board.text
         }
 
     }

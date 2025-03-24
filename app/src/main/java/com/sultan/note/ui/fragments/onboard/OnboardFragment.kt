@@ -12,7 +12,7 @@ import com.sultan.note.R
 import com.sultan.note.databinding.FragmentOnboardBinding
 import com.sultan.note.ui.activity.MainActivity
 import com.sultan.note.ui.adapters.OnboardPageAdapter
-import com.sultan.note.ui.models.OnboardPage
+import com.sultan.note.models.OnboardPage
 import com.sultan.note.utils.Preference
 
 class OnboardFragment : Fragment() {
@@ -35,46 +35,46 @@ class OnboardFragment : Fragment() {
 
     private fun initialize() {
         val onboardPageAdapter = OnboardPageAdapter(this@OnboardFragment, generateOnBoardPages());
-        binding.viewPager.adapter = onboardPageAdapter
+        binding.onboardViewPager2.adapter = onboardPageAdapter
     }
 
     private fun generateOnBoardPages() : ArrayList<OnboardPage> = arrayListOf(
         OnboardPage(
             R.raw.convenience_animation,
-            "Удобство",
-            "Создавайте заметки в два клика! Записывайте мысли, идеи и важные задачи мгновенно."
+            getString(R.string.onboard_convenience_title),
+            getString(R.string.onboard_convenience_text)
         ),
         OnboardPage(
             R.raw.organization_animation,
-            "Организация",
-            "Организуйте заметки по папкам и тегам. Легко находите нужную информацию в любое время."
+            getString(R.string.onboard_organization_title),
+            getString(R.string.onboard_organization_text)
         ),
         OnboardPage(
             R.raw.synchronization_animation,
-            "Синхронизация",
-            "Синхронизация на всех устройствах. Доступ к записям в любое время и в любом месте."
+            getString(R.string.onboard_synchronization_title),
+            getString(R.string.onboard_synchronization_text)
         )
     )
 
     private fun setupListeners() = with(binding) {
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        onboardViewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 changeActiveOnboardShower(position)
-                skip.visibility = if (position != 2) View.VISIBLE else View.INVISIBLE
-                startButton.isVisible = position == 2
+                skipTextView.visibility = if (position != 2) View.VISIBLE else View.INVISIBLE
+                startMaterialButton.isVisible = position == 2
             }
         })
-        skip.setOnClickListener {
+        skipTextView.setOnClickListener {
             toNotesFragment()
         }
-        startButton.setOnClickListener {
+        startMaterialButton.setOnClickListener {
             toNotesFragment()
         }
     }
 
     private fun changeActiveOnboardShower(position : Int) {
-        val onboardShowers = binding.onboardShowers;
+        val onboardShowers = binding.onboardShowersLinearLayout;
         for (i in 0 until onboardShowers.childCount) {
             val onboardShower = onboardShowers.getChildAt(i)
             if (i == position) {

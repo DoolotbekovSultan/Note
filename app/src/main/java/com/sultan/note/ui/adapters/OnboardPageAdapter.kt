@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.sultan.note.ui.fragments.onboard.OnboardPageFragment
-import com.sultan.note.ui.models.OnboardPage
+import com.sultan.note.models.OnboardPage
 
 class OnboardPageAdapter(
     fragment : Fragment,
