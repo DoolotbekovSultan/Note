@@ -2,6 +2,7 @@
     <string name="app_name">Note</string>
     <string name="notes_all_notes_title">Все заметки</string>
     <string name="notes_search_notes_hint">Поиск заметок</string>
+    <string name="detail_ready_text">Готово</string>
     <string name="onboard_skip_text">Пропустить</string>
     <string name="onboard_notes_title">Notes</string>
     <string name="onboard_start_text">Начать</string>
@@ -12,4 +13,18 @@
     <string name="onboard_synchronization_title">Синхронизация</string>
     <string name="onboard_synchronization_text">Синхронизация на всех устройствах. Доступ к записям в любое время и в любом месте.</string>
     <string name="content_description">Изображение не загрузилось</string>
+    <string name="notes_empty_notes_activity">Пока пусто</string>
+    <!-- Months -->
+    <string name="month_january">Январь</string>
+    <string name="month_february">Февраль</string>
+    <string name="month_march">Март</string>
+    <string name="month_april">Апрель</string>
+    <string name="month_may">Май</string>
+    <string name="month_june">Июнь</string>
+    <string name="month_july">Июль</string>
+    <string name="month_august">Август</string>
+    <string name="month_september">Сентябрь</string>
+    <string name="month_october">Октябрь</string>
+    <string name="month_november">Ноябрь</string>
+    <string name="month_december">Декабрь</string>
 </resources>
