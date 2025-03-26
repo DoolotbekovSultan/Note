@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp">
+    <FrameLayout
+        android:orientation="vertical"
+        android:background="@color/yellow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="18dp"
+        android:paddingEnd="35dp">
+        <TextView
+            android:id="@+id/titleTextView"
+            tools:text="Title"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23.67dp"
+            android:layout_gravity="start|top"/>
+        <TextView
+            android:id="@+id/textTextView"
+            tools:text="Очень длинный текст, который должен обрезаться и показать многоточие в конце Очень длинный текст, который должен обрезаться и показать многоточие в конце"
+            android:textSize="10sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="61.32dp"
+            android:lineSpacingMultiplier="1.3"
+            android:layout_gravity="start" />
+        <TextView
+            android:id="@+id/dateTextView"
+            tools:text="31 мая 12:45"
+            android:textStyle="bold"
+            android:textSize="8sp"
+            android:textColor="@color/gray_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>
