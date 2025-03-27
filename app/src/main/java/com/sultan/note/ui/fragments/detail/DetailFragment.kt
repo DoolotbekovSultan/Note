@@ -1,5 +1,6 @@
 package com.sultan.note.ui.fragments.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.sultan.note.App
 import android.view.KeyEvent
+import android.view.inputmethod.InputMethodManager
 import com.sultan.note.data.models.Note
 import com.sultan.note.databinding.FragmentDetailBinding
 import com.sultan.note.utils.Date
@@ -42,7 +44,7 @@ class DetailFragment : Fragment() {
         dateDayOfMonthTextView.text = currentDate.dayOfMonth.toString()
         dateMonthTextView.text = getString(currentDate.monthStringRes)
         dateHourTextView.text = currentDate.hour.toString()
-        dateMinuteTextView.text = currentDate.minute.toString()
+        dateMinuteTextView.text = String.format("%02d", currentDate.minute)
     }
 
     private fun setupListeners() = with(binding) {
@@ -88,7 +90,7 @@ class DetailFragment : Fragment() {
         })
 
         titleEditText.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_NEXT && titleEditText.text.toString() != "") {
+            if (actionId == EditorInfo.IME_ACTION_NEXT && titleEditText.text.trim().isNotEmpty()) {
                 textEditText.requestFocus()
                 return@setOnEditorActionListener true
             }
@@ -97,13 +99,24 @@ class DetailFragment : Fragment() {
 
         textEditText.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN ) {
-                if (keyCode == KeyEvent.KEYCODE_DEL && textEditText.text.isEmpty()) {
+                if (keyCode == KeyEvent.KEYCODE_DEL && textEditText.text.trim().isEmpty()) {
                     titleEditText.requestFocus()
                     return@setOnKeyListener true
                 }
             }
             false
         }
+        textEditText.setOnFocusChangeListener {v, hasFocus ->
+            if (hasFocus && titleEditText.text.isEmpty()) {
+                titleEditText.requestFocus()
+                showKeyboard(titleEditText)
+            }
+        }
+    }
+
+    private fun showKeyboard(view : View) {
+        val inputMethodManager = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
     private fun isCorrectNote() : Boolean {
@@ -115,7 +128,7 @@ class DetailFragment : Fragment() {
     private fun createNote() : Note {
         val title = binding.titleEditText.text.toString()
         val text = binding.textEditText.text.toString()
-        val date = "${currentDate.dayOfMonth} ${getString(currentDate.monthStringRes)} ${currentDate.hour}:${currentDate.minute}"
+        val date = "${currentDate.dayOfMonth} ${getString(currentDate.monthStringRes)} ${currentDate.hour}:${String.format("%02d", currentDate.minute)}"
         return Note(title, text, date)
     }
 }
