@@ -14,14 +14,23 @@ import androidx.navigation.fragment.findNavController
 import com.sultan.note.App
 import android.view.KeyEvent
 import android.view.inputmethod.InputMethodManager
+import com.sultan.note.R
 import com.sultan.note.data.models.Note
 import com.sultan.note.databinding.FragmentDetailBinding
 import com.sultan.note.utils.Date
+import com.sultan.note.ui.interfaces.OnColorSelectedListener
 
-class DetailFragment : Fragment() {
+class DetailFragment : Fragment(), OnColorSelectedListener {
 
     private lateinit var binding : FragmentDetailBinding
     private val currentDate = Date()
+    private var noteId = -1
+    private lateinit var note : Note
+    private var currentColor = R.color.yellow
+    private lateinit var dateString : String
+    private var showSelectionColor = false
+    private lateinit var selectionColorFragment : Fragment
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,11 +41,24 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let { args ->
+            noteId = args.getInt("noteId")
+        }
+        dateString = "${currentDate.dayOfMonth} ${getString(currentDate.monthStringRes)} ${currentDate.hour}:${String.format("%02d", currentDate.minute)}"
+        note = App.appDatabase?.noteDao()?.getById(noteId) ?: Note("", "", dateString, R.color.yellow)
+        currentColor = note.color
         initialize()
         setupListeners()
     }
 
     private fun initialize() {
+        selectionColorFragment = SelectionColorFragment()
+        val bundle = Bundle()
+        bundle.putInt("noteId", note.id)
+        selectionColorFragment.arguments = bundle
+        childFragmentManager.beginTransaction().replace(R.id.colorSelection, selectionColorFragment).commit()
+        binding.titleEditText.setText(note.title)
+        binding.textEditText.setText(note.text)
         setDate()
     }
 
@@ -48,17 +70,32 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupListeners() = with(binding) {
+
+        changeColor.setOnClickListener {
+
+            if (showSelectionColor) {
+                changeColor.setImageResource(R.drawable.active_overflow_menu)
+                colorSelection.visibility = View.GONE
+                showSelectionColor = false
+            } else {
+                changeColor.setImageResource(R.drawable.overflow_menu)
+                colorSelection.visibility = View.VISIBLE
+                showSelectionColor = true
+            }
+
+        }
         readyTextView.setOnClickListener {
-            val note = createNote()
-            App.appDatabase?.noteDao()?.insert(note)
+            val newNote = createNote()
+            if (noteId == -1) {
+                App.appDatabase?.noteDao()?.insert(newNote)
+            } else {
+                newNote.id = noteId
+                App.appDatabase?.noteDao()?.replace(newNote)
+            }
             findNavController().navigateUp()
         }
         backImageView.setOnClickListener{
             findNavController().navigateUp()
-        }
-
-        overflowMenu.setOnClickListener {
-            // TODO overflow menu on click logic
         }
 
         titleEditText.addTextChangedListener(object : TextWatcher {
@@ -89,7 +126,7 @@ class DetailFragment : Fragment() {
             }
         })
 
-        titleEditText.setOnEditorActionListener { v, actionId, event ->
+        titleEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT && titleEditText.text.trim().isNotEmpty()) {
                 textEditText.requestFocus()
                 return@setOnEditorActionListener true
@@ -97,7 +134,7 @@ class DetailFragment : Fragment() {
             return@setOnEditorActionListener true
         }
 
-        textEditText.setOnKeyListener { v, keyCode, event ->
+        textEditText.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN ) {
                 if (keyCode == KeyEvent.KEYCODE_DEL && textEditText.text.trim().isEmpty()) {
                     titleEditText.requestFocus()
@@ -106,7 +143,7 @@ class DetailFragment : Fragment() {
             }
             false
         }
-        textEditText.setOnFocusChangeListener {v, hasFocus ->
+        textEditText.setOnFocusChangeListener {_, hasFocus ->
             if (hasFocus && titleEditText.text.isEmpty()) {
                 titleEditText.requestFocus()
                 showKeyboard(titleEditText)
@@ -128,7 +165,10 @@ class DetailFragment : Fragment() {
     private fun createNote() : Note {
         val title = binding.titleEditText.text.toString()
         val text = binding.textEditText.text.toString()
-        val date = "${currentDate.dayOfMonth} ${getString(currentDate.monthStringRes)} ${currentDate.hour}:${String.format("%02d", currentDate.minute)}"
-        return Note(title, text, date)
+        return Note(title, text, dateString, currentColor)
+    }
+
+    override fun onColorSelected(color: Int) {
+        currentColor = color
     }
 }

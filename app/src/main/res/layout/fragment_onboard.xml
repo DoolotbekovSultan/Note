@@ -67,6 +67,7 @@
         android:id="@+id/startMaterialButton"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        style="@style/Button"
         app:cornerRadius="12dp"
         android:backgroundTint="@color/orange"
         android:text="@string/onboard_start_text"
