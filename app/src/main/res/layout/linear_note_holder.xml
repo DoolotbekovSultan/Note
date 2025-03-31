@@ -9,9 +9,10 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp">
     <LinearLayout
+        android:id="@+id/card"
         android:orientation="vertical"
-        android:background="@color/yellow"
         android:layout_width="match_parent"
+        android:background="@color/yellow"
         android:layout_height="match_parent"
         android:paddingHorizontal="12dp">
         <TextView

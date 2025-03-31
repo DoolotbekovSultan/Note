@@ -11,5 +11,11 @@
     <color name="gray">#C4C4C4</color>
     <color name="gray_normal">#434343</color>
     <color name="yellow">#FFF599</color>
+    <color name="violet">#B69CFF</color>
+    <color name="ping">#FD99FF</color>
+    <color name="red">#FF9E9E </color>
+    <color name="green">#91F48F</color>
+    <color name="blue">#9EFFFF</color>
     <color name="middle_gray">#535353</color>
+    <color name="color_selection_bg_gray">#5B5B5B</color>
 </resources>
