@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605675541727",
+    "project_id": "note-6237a",
+    "storage_bucket": "note-6237a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605675541727:android:734ff3ad3d99590b2ec56a",
+        "android_client_info": {
+          "package_name": "com.sultan.note"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUomafwb1DPKFeBIUy3qavXTzUetYDoO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

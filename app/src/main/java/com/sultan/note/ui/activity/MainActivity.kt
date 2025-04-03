@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.databinding.ActivityMainBinding
 import com.sultan.note.utils.Preference
@@ -14,7 +15,6 @@ import com.sultan.note.utils.Preference
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-    val preference = Preference()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +32,13 @@ class MainActivity : AppCompatActivity() {
     private fun initialize() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
         val navController = navHostFragment?.navController ?: return
-        preference.unit(this)
 
-        if (!preference.isFirstVisit) {
+        if (App.sharedPreference.isFirstVisit) {
             val navOptions = NavOptions.Builder().setPopUpTo(R.id.onboardFragment, true).build()
             navController.navigate(R.id.notesFragment, null, navOptions)
+        } else if (App.sharedPreference.isAuth) {
+            val navOptions = NavOptions.Builder().setPopUpTo(R.id.onboardFragment, true).build()
+            navController.navigate(R.id.googleAuthFragment, null, navOptions)
         }
     }
 }

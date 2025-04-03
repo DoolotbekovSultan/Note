@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.google_auth.GoogleAuthFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_gravity="center_horizontal"
+        app:fontFamily="@font/potta_one"
+        android:text="@string/onboard_notes_title"
+        android:textColor="@color/white"
+        android:textSize="25sp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_note"
+        />
+    <TextView
+        android:text="@string/auth_text"
+        android:textColor="@color/white2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"
+        android:layout_marginTop="32dp"/>
+    <Button
+        android:id="@+id/signGoogleButton"
+        android:layout_width="179dp"
+        android:layout_height="46dp"
+        android:drawableStart="@drawable/ic_google"
+        android:padding="12dp"
+        style="@style/Button"
+        android:text="@string/google_auth_sign_with_google_text"
+        android:textColor="@color/black2"
+        android:background="@drawable/auth_with_google_background"
+        android:layout_gravity="center"
+        android:layout_marginTop="143dp"/>
+</LinearLayout>
