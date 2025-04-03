@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black50">#7F000000</color>
+    <color name="black2">#1F1F1F</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white2">#FFFFFF</color>
     <color name="white50">#80FFFFFF</color>
     <color name="white80">#CBFFFFFF</color>
     <color name="white70">#B3FFFFFF</color>
@@ -18,4 +21,5 @@
     <color name="blue">#9EFFFF</color>
     <color name="middle_gray">#535353</color>
     <color name="color_selection_bg_gray">#5B5B5B</color>
+    <color name="border_gray">#747775</color>
 </resources>

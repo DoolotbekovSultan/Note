@@ -14,13 +14,14 @@ import androidx.navigation.fragment.findNavController
 import com.sultan.note.App
 import android.view.KeyEvent
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.get
 import com.sultan.note.R
 import com.sultan.note.data.models.Note
 import com.sultan.note.databinding.FragmentDetailBinding
 import com.sultan.note.utils.Date
-import com.sultan.note.ui.interfaces.OnColorSelectedListener
 
-class DetailFragment : Fragment(), OnColorSelectedListener {
+class DetailFragment : Fragment()
+{
 
     private lateinit var binding : FragmentDetailBinding
     private val currentDate = Date()
@@ -29,7 +30,17 @@ class DetailFragment : Fragment(), OnColorSelectedListener {
     private var currentColor = R.color.yellow
     private lateinit var dateString : String
     private var showSelectionColor = false
-    private lateinit var selectionColorFragment : Fragment
+    private var activeColor : Int = 0
+
+    private val colors = arrayOf(R.color.yellow, R.color.violet, R.color.ping,
+        R.color.red, R.color.green, R.color.blue)
+
+    private val inactiveBackgrounds = arrayOf(R.drawable.yellow_color_background, R.drawable.violet_color_background, R.drawable.ping_color_background,
+        R.drawable.red_color_background, R.drawable.green_color_background, R.drawable.blue_color_background)
+
+    private val activeBackgrounds = arrayOf(R.drawable.active_yellow_color_background, R.drawable.active_violet_color_background, R.drawable.active_ping_color_background,
+        R.drawable.active_red_color_background, R.drawable.active_green_color_background, R.drawable.active_blue_color_background)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,22 +52,24 @@ class DetailFragment : Fragment(), OnColorSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initialize()
+        setupListeners()
+    }
+
+    private fun initialize() {
         arguments?.let { args ->
             noteId = args.getInt("noteId")
         }
         dateString = "${currentDate.dayOfMonth} ${getString(currentDate.monthStringRes)} ${currentDate.hour}:${String.format("%02d", currentDate.minute)}"
         note = App.appDatabase?.noteDao()?.getById(noteId) ?: Note("", "", dateString, R.color.yellow)
         currentColor = note.color
-        initialize()
-        setupListeners()
-    }
-
-    private fun initialize() {
-        selectionColorFragment = SelectionColorFragment()
-        val bundle = Bundle()
-        bundle.putInt("noteId", note.id)
-        selectionColorFragment.arguments = bundle
-        childFragmentManager.beginTransaction().replace(R.id.colorSelection, selectionColorFragment).commit()
+        activeColor = colors.indexOf(currentColor)
+        for (i in 0 until binding.colors.childCount) {
+            val view = binding.colors.getChildAt(i)
+            view.setOnClickListener {
+                updateActive(i)
+            }
+        }
         binding.titleEditText.setText(note.title)
         binding.textEditText.setText(note.text)
         setDate()
@@ -70,6 +83,16 @@ class DetailFragment : Fragment(), OnColorSelectedListener {
     }
 
     private fun setupListeners() = with(binding) {
+
+        for (i in 0 until binding.colors.childCount) {
+            val view = binding.colors.getChildAt(i)
+            if (i == activeColor) {
+                view.setBackgroundResource(activeBackgrounds[i])
+            }
+            view.setOnClickListener {
+                updateActive(i)
+            }
+        }
 
         changeColor.setOnClickListener {
 
@@ -168,7 +191,13 @@ class DetailFragment : Fragment(), OnColorSelectedListener {
         return Note(title, text, dateString, currentColor)
     }
 
-    override fun onColorSelected(color: Int) {
-        currentColor = color
+    private fun updateActive(newActive : Int) {
+        if (newActive < 0 || newActive >= colors.size) return
+        val oldActiveColor = binding.colors.getChildAt(activeColor)
+        oldActiveColor.setBackgroundResource(inactiveBackgrounds[activeColor])
+        activeColor = newActive
+        currentColor = colors[activeColor]
+        val newActiveColor = binding.colors.getChildAt(activeColor)
+        newActiveColor.setBackgroundResource(activeBackgrounds[activeColor])
     }
 }

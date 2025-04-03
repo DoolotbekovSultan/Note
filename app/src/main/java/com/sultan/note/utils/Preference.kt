@@ -8,6 +8,7 @@ class Preference {
 
     companion object {
         private const val IS_FIRST_VISIT = "IS_FIRST_VISIT"
+        private const val IS_AUTH = "IS_AUTH"
         private const val LAYOUT_MANAGER = "LAYOUT_MANAGER"
     }
 
@@ -22,4 +23,8 @@ class Preference {
     var layoutManager : Int
         get() = sharedPreferences.getInt(LAYOUT_MANAGER, 0)
         set(value) = sharedPreferences.edit().putInt(LAYOUT_MANAGER, value).apply()
+
+    var isAuth : Boolean
+        get() = sharedPreferences.getBoolean(IS_AUTH, true)
+        set(value) = sharedPreferences.edit().putBoolean(IS_AUTH, value).apply()
 }

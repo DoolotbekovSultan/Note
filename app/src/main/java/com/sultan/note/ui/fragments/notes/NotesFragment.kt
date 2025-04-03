@@ -62,6 +62,9 @@ class NotesFragment : Fragment(), OnClickNote {
         }
     }
     private fun setupListeners() = with(binding) {
+        alertDialogScreen.setOnClickListener {
+            // EMPTY
+        }
         addNoteImageButton.setOnClickListener {
             findNavController().navigate(
                 NotesFragmentDirections.actionNotesFragmentToDetailFragment(
@@ -91,22 +94,18 @@ class NotesFragment : Fragment(), OnClickNote {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
     override fun onLongClick(note: Note) {
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.note_delete_note_alert_dialog, null)
-        val alertDialog = AlertDialog.Builder(requireContext()).setView(dialogView).create()
 
-        val negativeButton = dialogView.findViewById<Button>(R.id.negativeButton)
-        val positiveButton = dialogView.findViewById<Button>(R.id.positiveButton)
+        binding.alertDialogScreen.visibility = View.VISIBLE
 
-        negativeButton.setOnClickListener {
-            alertDialog.dismiss()
+        binding.negativeButton.setOnClickListener {
+            binding.alertDialogScreen.visibility = View.GONE
         }
-        positiveButton.setOnClickListener {
+        binding.positiveButton.setOnClickListener {
             App.appDatabase?.noteDao()?.delete(note)
-            alertDialog.dismiss()
+            binding.alertDialogScreen.visibility = View.GONE
         }
-        alertDialog.show()
+
     }
 
     override fun onClick(note: Note) {

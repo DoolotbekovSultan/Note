@@ -11,8 +11,8 @@
         android:label="fragment_onboard"
         tools:layout="@layout/fragment_onboard" >
         <action
-            android:id="@+id/action_onboardFragment_to_notesFragment"
-            app:destination="@id/notesFragment"
+            android:id="@+id/action_onboardFragment_to_googleAuthFragment"
+            app:destination="@id/googleAuthFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@id/onboardFragment"
@@ -35,6 +35,19 @@
         <argument
             android:name="noteId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/googleAuthFragment"
+        android:name="com.sultan.note.ui.fragments.google_auth.GoogleAuthFragment"
+        android:label="fragment_google_auth"
+        tools:layout="@layout/fragment_google_auth" >
+        <action
+            android:id="@+id/action_googleAuthFragment_to_notesFragment"
+            app:destination="@id/notesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/onboardFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>

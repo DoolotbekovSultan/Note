@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.databinding.FragmentOnboardBinding
 import com.sultan.note.ui.activity.MainActivity
@@ -86,8 +87,7 @@ class OnboardFragment : Fragment() {
     }
 
     private fun toNotesFragment() {
-        val mainActivity = requireActivity() as MainActivity
-        mainActivity.preference.isFirstVisit = false
-        findNavController().navigate(R.id.action_onboardFragment_to_notesFragment)
+        App.sharedPreference.isFirstVisit = false
+        findNavController().navigate(R.id.action_onboardFragment_to_googleAuthFragment)
     }
 }

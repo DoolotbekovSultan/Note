@@ -9,12 +9,13 @@ class App : Application() {
 
     companion object {
         var appDatabase : AppDatabase? = null
+        lateinit var  sharedPreference : Preference
     }
 
     override fun onCreate() {
         super.onCreate()
-        val sharedPreferences = Preference()
-        sharedPreferences.unit(this)
+        sharedPreference = Preference()
+        sharedPreference.unit(this)
         getInstance()
     }
 
