@@ -19,6 +19,7 @@ import com.sultan.note.utils.Preference
 class OnboardFragment : Fragment() {
 
     private lateinit var binding : FragmentOnboardBinding
+    private val preference = Preference()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,7 @@ class OnboardFragment : Fragment() {
     }
 
     private fun initialize() {
+        preference.unit(requireActivity())
         val onboardPageAdapter = OnboardPageAdapter(this@OnboardFragment, generateOnBoardPages());
         binding.onboardViewPager2.adapter = onboardPageAdapter
     }
@@ -87,7 +89,7 @@ class OnboardFragment : Fragment() {
     }
 
     private fun toNotesFragment() {
-        App.sharedPreference.isFirstVisit = false
+        preference.isFirstVisit = false
         findNavController().navigate(R.id.action_onboardFragment_to_googleAuthFragment)
     }
 }

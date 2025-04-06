@@ -22,11 +22,13 @@ import com.google.firebase.auth.auth
 import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.databinding.FragmentGoogleAuthBinding
+import com.sultan.note.utils.Preference
 
 class GoogleAuthFragment : Fragment() {
 
     private lateinit var binding: FragmentGoogleAuthBinding
     private lateinit var auth: FirebaseAuth
+    private val preference = Preference()
     private lateinit var googleClient: GoogleSignInClient
     private val signInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -59,6 +61,7 @@ class GoogleAuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        preference.unit(requireActivity())
         setupListeners()
     }
 
@@ -83,7 +86,7 @@ class GoogleAuthFragment : Fragment() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null){
-            App.sharedPreference.isAuth = false
+            preference.isAuth = false
             findNavController().navigate(R.id.action_googleAuthFragment_to_notesFragment)
         }else{
             Toast.makeText(requireContext(), "Аунтификация не прошла", Toast.LENGTH_SHORT).show()

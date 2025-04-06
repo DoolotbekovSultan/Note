@@ -35,5 +35,11 @@
     <string name="default_web_client_id">605675541727-452iu9vb47l4uk3vgkh3nqsue2c1dblu.apps.googleusercontent.com</string>
     <string name="auth_text">Авторизация</string>
     <string name="google_auth_sign_with_google_text">Sign in with Google</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="store_add_text">Add</string>
+    <string name="menu_onboard_title">Onboard</string>
+    <string name="menu_notes_title">Notes</string>
+    <string name="menu_store_title">Store</string>
 
 </resources>
