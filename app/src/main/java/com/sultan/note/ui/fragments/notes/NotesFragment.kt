@@ -11,7 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,6 +64,10 @@ class NotesFragment : Fragment(), OnClickNote {
         }
     }
     private fun setupListeners() = with(binding) {
+        menuImageButton.setOnClickListener {
+            val drawer = activity?.findViewById<DrawerLayout>(R.id.drawer)
+            drawer?.openDrawer(GravityCompat.START)
+        }
         alertDialogScreen.setOnClickListener {
             // EMPTY
         }

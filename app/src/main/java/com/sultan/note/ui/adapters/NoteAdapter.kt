@@ -2,18 +2,15 @@ package com.sultan.note.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sultan.note.R
 import com.sultan.note.data.models.Note
 import com.sultan.note.databinding.GridNoteHolderBinding
 import com.sultan.note.databinding.LinearNoteHolderBinding
 import com.sultan.note.ui.interfaces.OnClickNote
-import com.sultan.note.utils.DiffCallback
+import com.sultan.note.utils.NoteDiffCallback
 
-class NoteAdapter(var viewType: Int, private val onClickNote : OnClickNote) : ListAdapter<Note, RecyclerView.ViewHolder>(DiffCallback() ) {
+class NoteAdapter(var viewType: Int, private val onClickNote : OnClickNote) : ListAdapter<Note, RecyclerView.ViewHolder>(NoteDiffCallback() ) {
 
     companion object {
         const val VIEW_TYPE_LINEAR = 0

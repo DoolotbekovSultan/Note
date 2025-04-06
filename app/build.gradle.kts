@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.firestore)
 
     // Room
     val room_version = "2.6.1"

@@ -46,8 +46,13 @@
             app:destination="@id/notesFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/onboardFragment"
+            app:popUpTo="@id/googleAuthFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.sultan.note.ui.fragments.store.StoreFragment"
+        android:label="fragment_store"
+        tools:layout="@layout/fragment_store" />
 
 </navigation>
