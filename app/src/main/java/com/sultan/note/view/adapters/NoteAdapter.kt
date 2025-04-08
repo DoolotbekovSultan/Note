@@ -1,13 +1,13 @@
-package com.sultan.note.ui.adapters
+package com.sultan.note.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sultan.note.data.models.Note
+import com.sultan.note.model.data.models.Note
 import com.sultan.note.databinding.GridNoteHolderBinding
 import com.sultan.note.databinding.LinearNoteHolderBinding
-import com.sultan.note.ui.interfaces.OnClickNote
+import com.sultan.note.view.interfaces.OnClickNote
 import com.sultan.note.utils.NoteDiffCallback
 
 class NoteAdapter(var viewType: Int, private val onClickNote : OnClickNote) : ListAdapter<Note, RecyclerView.ViewHolder>(NoteDiffCallback() ) {

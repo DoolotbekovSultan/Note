@@ -1,16 +1,10 @@
-package com.sultan.note.ui.fragments.notes
+package com.sultan.note.view.fragments.notes
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,12 +13,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sultan.note.App
 import com.sultan.note.R
-import com.sultan.note.data.models.Note
+import com.sultan.note.model.data.models.Note
 import com.sultan.note.databinding.FragmentNotesBinding
-import com.sultan.note.ui.adapters.NoteAdapter
-import com.sultan.note.ui.fragments.detail.DetailFragment
-import com.sultan.note.ui.interfaces.OnClickNote
-import com.sultan.note.utils.Date
+import com.sultan.note.view.adapters.NoteAdapter
+import com.sultan.note.view.interfaces.OnClickNote
 import com.sultan.note.utils.Preference
 
 class NotesFragment : Fragment(), OnClickNote {

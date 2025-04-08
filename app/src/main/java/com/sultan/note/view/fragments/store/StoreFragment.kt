@@ -1,4 +1,4 @@
-package com.sultan.note.ui.fragments.store
+package com.sultan.note.view.fragments.store
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.firestore
 import com.sultan.note.databinding.FragmentStoreBinding
-import com.sultan.note.ui.adapters.StoreAdapter
+import com.sultan.note.view.adapters.StoreAdapter
 
 
 class StoreFragment : Fragment() {

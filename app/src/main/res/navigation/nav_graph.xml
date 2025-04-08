@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardFragment"
-        android:name="com.sultan.note.ui.fragments.onboard.OnboardFragment"
+        android:name="com.sultan.note.view.fragments.onboard.OnboardFragment"
         android:label="fragment_onboard"
         tools:layout="@layout/fragment_onboard" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.sultan.note.ui.fragments.notes.NotesFragment"
+        android:name="com.sultan.note.view.fragments.notes.NotesFragment"
         android:label="fragment_notes"
         tools:layout="@layout/fragment_notes" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.sultan.note.ui.fragments.detail.DetailFragment"
+        android:name="com.sultan.note.view.fragments.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
         <argument
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/googleAuthFragment"
-        android:name="com.sultan.note.ui.fragments.google_auth.GoogleAuthFragment"
+        android:name="com.sultan.note.view.fragments.google_auth.GoogleAuthFragment"
         android:label="fragment_google_auth"
         tools:layout="@layout/fragment_google_auth" >
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.sultan.note.ui.fragments.store.StoreFragment"
+        android:name="com.sultan.note.view.fragments.store.StoreFragment"
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" />
 

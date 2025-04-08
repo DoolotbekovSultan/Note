@@ -2,7 +2,7 @@ package com.sultan.note
 
 import android.app.Application
 import androidx.room.Room
-import com.sultan.note.data.database.AppDatabase
+import com.sultan.note.model.data.database.AppDatabase
 import com.sultan.note.utils.Preference
 
 class App : Application() {

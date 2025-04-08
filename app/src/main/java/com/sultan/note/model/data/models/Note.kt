@@ -1,4 +1,4 @@
-package com.sultan.note.data.models
+package com.sultan.note.model.data.models
 
 import android.content.Context
 import androidx.room.Entity

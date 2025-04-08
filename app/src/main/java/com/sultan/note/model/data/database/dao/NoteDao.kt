@@ -1,4 +1,4 @@
-package com.sultan.note.data.database.dao
+package com.sultan.note.model.data.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,7 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.sultan.note.data.models.Note
+import com.sultan.note.model.data.models.Note
 
 @Dao
 interface NoteDao {

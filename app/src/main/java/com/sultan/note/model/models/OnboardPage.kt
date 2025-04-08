@@ -1,4 +1,4 @@
-package com.sultan.note.models
+package com.sultan.note.model.models
 
 import java.io.Serializable
 

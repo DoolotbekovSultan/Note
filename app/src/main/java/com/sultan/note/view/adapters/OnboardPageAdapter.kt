@@ -1,10 +1,10 @@
-package com.sultan.note.ui.adapters
+package com.sultan.note.view.adapters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.sultan.note.ui.fragments.onboard.OnboardPageFragment
-import com.sultan.note.models.OnboardPage
+import com.sultan.note.view.fragments.onboard.OnboardPageFragment
+import com.sultan.note.model.models.OnboardPage
 
 class OnboardPageAdapter(
     fragment : Fragment,
