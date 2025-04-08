@@ -1,4 +1,4 @@
-package com.sultan.note.ui.fragments.onboard
+package com.sultan.note.view.fragments.onboard
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.databinding.FragmentOnboardBinding
-import com.sultan.note.ui.activity.MainActivity
-import com.sultan.note.ui.adapters.OnboardPageAdapter
-import com.sultan.note.models.OnboardPage
+import com.sultan.note.view.adapters.OnboardPageAdapter
+import com.sultan.note.model.models.OnboardPage
 import com.sultan.note.utils.Preference
 
 class OnboardFragment : Fragment() {

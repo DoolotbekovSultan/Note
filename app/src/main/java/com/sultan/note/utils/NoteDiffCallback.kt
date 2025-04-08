@@ -1,7 +1,7 @@
 package com.sultan.note.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.sultan.note.data.models.Note
+import com.sultan.note.model.data.models.Note
 
 class NoteDiffCallback : DiffUtil.ItemCallback<Note>() {
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {

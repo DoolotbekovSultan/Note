@@ -1,4 +1,4 @@
-package com.sultan.note.ui.fragments.detail
+package com.sultan.note.view.fragments.detail
 
 import android.content.Context
 import android.os.Bundle
@@ -14,9 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.sultan.note.App
 import android.view.KeyEvent
 import android.view.inputmethod.InputMethodManager
-import androidx.core.view.get
 import com.sultan.note.R
-import com.sultan.note.data.models.Note
+import com.sultan.note.model.data.models.Note
 import com.sultan.note.databinding.FragmentDetailBinding
 import com.sultan.note.utils.Date
 
@@ -52,6 +51,7 @@ class DetailFragment : Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.readyTextView.isVisible = isCorrectNote()
         initialize()
         setupListeners()
     }
@@ -107,6 +107,7 @@ class DetailFragment : Fragment()
             }
 
         }
+
         readyTextView.setOnClickListener {
             val newNote = createNote()
             if (noteId == -1) {

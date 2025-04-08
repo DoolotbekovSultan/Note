@@ -1,4 +1,4 @@
-package com.sultan.note.ui.fragments.onboard
+package com.sultan.note.view.fragments.onboard
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sultan.note.databinding.FragmentOnboardPageBinding
-import com.sultan.note.models.OnboardPage
+import com.sultan.note.model.models.OnboardPage
 
 class OnboardPageFragment : Fragment() {
 

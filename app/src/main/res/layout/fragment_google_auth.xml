@@ -6,7 +6,7 @@
     android:background="@color/dark_gray"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.google_auth.GoogleAuthFragment">
+    tools:context=".view.fragments.google_auth.GoogleAuthFragment">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

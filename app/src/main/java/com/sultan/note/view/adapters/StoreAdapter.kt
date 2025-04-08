@@ -1,4 +1,4 @@
-package com.sultan.note.ui.adapters
+package com.sultan.note.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

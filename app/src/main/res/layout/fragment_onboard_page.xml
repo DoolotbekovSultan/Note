@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.fragments.onboard.OnboardPageFragment">
+    tools:context=".view.fragments.onboard.OnboardPageFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationLottieAnimationView"

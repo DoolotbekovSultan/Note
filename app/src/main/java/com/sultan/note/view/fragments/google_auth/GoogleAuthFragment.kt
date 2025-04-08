@@ -1,4 +1,4 @@
-package com.sultan.note.ui.fragments.google_auth
+package com.sultan.note.view.fragments.google_auth
 
 import android.app.Activity
 import android.content.Intent
@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
-import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.databinding.FragmentGoogleAuthBinding
 import com.sultan.note.utils.Preference

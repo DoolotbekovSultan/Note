@@ -1,16 +1,11 @@
-package com.sultan.note.ui.activity
+package com.sultan.note.view.activity
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.databinding.ActivityMainBinding
 import com.sultan.note.utils.Preference
