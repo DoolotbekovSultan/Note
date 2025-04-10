@@ -14,13 +14,15 @@ import androidx.navigation.fragment.findNavController
 import com.sultan.note.App
 import android.view.KeyEvent
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.sultan.note.R
 import com.sultan.note.model.data.models.Note
 import com.sultan.note.databinding.FragmentDetailBinding
+import com.sultan.note.presenter.detail.DetailContact
+import com.sultan.note.presenter.detail.DetailPresenter
 import com.sultan.note.utils.Date
 
-class DetailFragment : Fragment()
-{
+class DetailFragment : Fragment(), DetailContact.View {
 
     private lateinit var binding : FragmentDetailBinding
     private val currentDate = Date()
@@ -30,6 +32,7 @@ class DetailFragment : Fragment()
     private lateinit var dateString : String
     private var showSelectionColor = false
     private var activeColor : Int = 0
+    private val presenter = DetailPresenter(this)
 
     private val colors = arrayOf(R.color.yellow, R.color.violet, R.color.ping,
         R.color.red, R.color.green, R.color.blue)
@@ -51,8 +54,8 @@ class DetailFragment : Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.readyTextView.isVisible = isCorrectNote()
         initialize()
+        binding.readyTextView.isVisible = isCorrectNote()
         setupListeners()
     }
 
@@ -61,7 +64,7 @@ class DetailFragment : Fragment()
             noteId = args.getInt("noteId")
         }
         dateString = "${currentDate.dayOfMonth} ${getString(currentDate.monthStringRes)} ${currentDate.hour}:${String.format("%02d", currentDate.minute)}"
-        note = App.appDatabase?.noteDao()?.getById(noteId) ?: Note("", "", dateString, R.color.yellow)
+        presenter.loadNote(noteId)
         currentColor = note.color
         activeColor = colors.indexOf(currentColor)
         for (i in 0 until binding.colors.childCount) {
@@ -99,11 +102,11 @@ class DetailFragment : Fragment()
             if (showSelectionColor) {
                 changeColor.setImageResource(R.drawable.active_overflow_menu)
                 colorSelection.visibility = View.GONE
-                showSelectionColor = false
+                showSelectionColor = true
             } else {
                 changeColor.setImageResource(R.drawable.overflow_menu)
                 colorSelection.visibility = View.VISIBLE
-                showSelectionColor = true
+                showSelectionColor = false
             }
 
         }
@@ -111,10 +114,10 @@ class DetailFragment : Fragment()
         readyTextView.setOnClickListener {
             val newNote = createNote()
             if (noteId == -1) {
-                App.appDatabase?.noteDao()?.insert(newNote)
+                presenter.saveNote(newNote)
             } else {
                 newNote.id = noteId
-                App.appDatabase?.noteDao()?.replace(newNote)
+                presenter.updateNote(newNote)
             }
             findNavController().navigateUp()
         }
@@ -200,5 +203,13 @@ class DetailFragment : Fragment()
         currentColor = colors[activeColor]
         val newActiveColor = binding.colors.getChildAt(activeColor)
         newActiveColor.setBackgroundResource(activeBackgrounds[activeColor])
+    }
+
+    override fun showNote(note: Note) {
+        this.note = note
+    }
+
+    override fun showErrorMessage() {
+        Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
     }
 }
