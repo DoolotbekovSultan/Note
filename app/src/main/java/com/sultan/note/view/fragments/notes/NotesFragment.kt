@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,15 +16,18 @@ import com.sultan.note.App
 import com.sultan.note.R
 import com.sultan.note.model.data.models.Note
 import com.sultan.note.databinding.FragmentNotesBinding
+import com.sultan.note.presenter.notes.NotesContract
+import com.sultan.note.presenter.notes.NotesPresenter
 import com.sultan.note.view.adapters.NoteAdapter
 import com.sultan.note.view.interfaces.OnClickNote
 import com.sultan.note.utils.Preference
 
-class NotesFragment : Fragment(), OnClickNote {
+class NotesFragment : Fragment(), OnClickNote, NotesContract.View {
 
     private lateinit var binding : FragmentNotesBinding
     private val preference = Preference()
     private lateinit var noteAdapter : NoteAdapter
+    private val presenter = NotesPresenter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +41,7 @@ class NotesFragment : Fragment(), OnClickNote {
         super.onViewCreated(view, savedInstanceState)
         initialize()
         setupListeners()
-        getData()
+        presenter.loadNotes()
     }
 
     private fun initialize() {
@@ -55,11 +59,14 @@ class NotesFragment : Fragment(), OnClickNote {
             adapter = noteAdapter
         }
     }
+
     private fun setupListeners() = with(binding) {
+
         menuImageButton.setOnClickListener {
             val drawer = activity?.findViewById<DrawerLayout>(R.id.drawer)
             drawer?.openDrawer(GravityCompat.START)
         }
+
         alertDialogScreen.setOnClickListener {
             // EMPTY
         }
@@ -85,13 +92,6 @@ class NotesFragment : Fragment(), OnClickNote {
         }
     }
 
-    private fun getData() {
-        App.appDatabase?.noteDao()?.getAll()?.observe(viewLifecycleOwner){ notes ->
-            binding.emptyNotesTextView.isVisible = notes.isEmpty()
-            noteAdapter.submitList(notes)
-        }
-    }
-
     override fun onLongClick(note: Note) {
 
         binding.alertDialogScreen.visibility = View.VISIBLE
@@ -100,7 +100,7 @@ class NotesFragment : Fragment(), OnClickNote {
             binding.alertDialogScreen.visibility = View.GONE
         }
         binding.positiveButton.setOnClickListener {
-            App.appDatabase?.noteDao()?.delete(note)
+            presenter.deleteNote(note)
             binding.alertDialogScreen.visibility = View.GONE
         }
 
@@ -108,5 +108,14 @@ class NotesFragment : Fragment(), OnClickNote {
 
     override fun onClick(note: Note) {
         findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToDetailFragment(note.id))
+    }
+
+    override fun showNotes(notes: List<Note>) {
+        binding.emptyNotesTextView.isVisible = notes.isEmpty()
+        noteAdapter.submitList(notes)
+    }
+
+    override fun showError() {
+        Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
     }
 }

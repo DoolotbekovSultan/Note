@@ -61,6 +61,7 @@ class GoogleAuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preference.unit(requireActivity())
+        findNavController().navigate(R.id.action_googleAuthFragment_to_notesFragment)
         setupListeners()
     }
 
